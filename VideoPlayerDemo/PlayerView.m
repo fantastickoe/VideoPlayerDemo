@@ -15,15 +15,6 @@
     return [AVPlayerLayer class];
 }
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor blackColor];
-        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    }
-    return self;
-}
-
 - (AVPlayer *)player {
     return [(AVPlayerLayer *)[self layer] player];
 }

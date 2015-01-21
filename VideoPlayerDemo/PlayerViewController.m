@@ -20,8 +20,29 @@
 @end
 
 @implementation PlayerViewController
-
 static const NSString *ItemStatusContext;
+
+#pragma mark - Initialize
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self syncUI];
+    self.localResourceLoaded=NO;
+    self.onlineResourceLoaded=NO;
+    self.scrubberSlider.value=0;
+    self.playButton.hidden=NO;
+    self.pauseButton.hidden=YES;
+    // Do any additional setup after loading the view.
+}
+#pragma mark - Load assets and Sync UI
+- (void) syncUI{
+    if ((self.player.currentItem != nil) &&
+        ([self.player.currentItem status] == AVPlayerItemStatusReadyToPlay)) {
+        self.playButton.enabled = YES;
+    }
+    else {
+        self.playButton.enabled = NO;
+    }
+}
 
 - (IBAction)loadAssetOnline:(id)sender{
     NSLog(@"begin online loading");
@@ -34,7 +55,7 @@ static const NSString *ItemStatusContext;
         // Define this constant for the key-value observation context.
         if (self.player){
             [self.playerItem removeObserver:self forKeyPath:@"status"];
-            [self.player removeTimeObserver:self.timeObserver];
+            self.timeObserver=nil;
         }
         
         [asset loadValuesAsynchronouslyForKeys:@[tracksKey] completionHandler:
@@ -77,9 +98,6 @@ static const NSString *ItemStatusContext;
     }
 }
 
-
-
-
 - (IBAction)loadAssetFromFile:sender {
     NSLog(@"begin local loading");
     
@@ -93,7 +111,8 @@ static const NSString *ItemStatusContext;
         
         if (self.player){
             [self.playerItem removeObserver:self forKeyPath:@"status"];
-            [self.player removeTimeObserver:self.timeObserver];        }
+            self.timeObserver=nil;
+        }
 
         
         [asset loadValuesAsynchronouslyForKeys:@[tracksKey] completionHandler:
@@ -136,53 +155,7 @@ static const NSString *ItemStatusContext;
     }
 }
 
-- (void)addPlayerItemTimeObserver {
-    __weak id weakSelf = self;
-    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.5f, NSEC_PER_SEC)
-                                                                  queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-                                                                      // Update UI state
-                                                                      [weakSelf syncScrubberView];
-                                                                  }];
-}
-
-- (void)syncScrubberView {
-    //NSLog(@"syncScrubber start");
-    
-    if (self.playerItem.status==AVPlayerItemStatusReadyToPlay && !CMTIME_IS_INVALID(self.playerItem.duration)) {
-        
-        double currentTime = CMTimeGetSeconds([self.player currentTime]);
-        double duration = CMTimeGetSeconds(self.playerItem.duration);
-        
-        self.scrubberSlider.minimumValue = 0;
-        self.scrubberSlider.maximumValue = duration;
-        self.scrubberSlider.value=currentTime;
-        [self updateScrubberLabelsWithDuration:duration andCurrentTime:currentTime];
-    } else {
-        self.currentTimeLabel.text = @"-- : --";
-    }
-}
-- (void)updateScrubberLabelsWithDuration:(double)duration andCurrentTime:(double)currentTime {
-    NSInteger currentSeconds = ceilf(currentTime);
-    self.currentTimeLabel.text = [self formatSeconds:currentSeconds];
-    self.totalTimeLabel.text = [self formatSeconds:duration];
-}
-
-- (NSString *)formatSeconds:(NSInteger)value {
-    NSInteger seconds = value % 60;
-    NSInteger minutes = value / 60;
-    return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
-}
-
-- (void) syncUI{
-    if ((self.player.currentItem != nil) &&
-        ([self.player.currentItem status] == AVPlayerItemStatusReadyToPlay)) {
-        self.playButton.enabled = YES;
-    }
-    else {
-        self.playButton.enabled = NO;
-    }
-}
-
+#pragma mark - Add Observers
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context {
     
@@ -199,46 +172,17 @@ static const NSString *ItemStatusContext;
     return;
 }
 
-- (IBAction)play:sender {
-    [_player play];
-    self.playButton.hidden=YES;
-    self.pauseButton.hidden=NO;
-}
-- (IBAction)pause:(id)sender {
-    [_player pause];
-    self.pauseButton.hidden=YES;
-    self.playButton.hidden=NO;
-}
 
-
-- (void)playerItemDidReachEnd:(NSNotification *)notification {
-    [self.player seekToTime:kCMTimeZero];
-    self.scrubberSlider.value=0;
-    self.playButton.hidden=NO;
-    self.pauseButton.hidden=YES;
+- (void)addPlayerItemTimeObserver {
+    __weak id weakSelf = self;
+    self.timeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.5f, NSEC_PER_SEC)
+                                                                  queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+                                                                      // Update UI state
+                                                                      [weakSelf syncScrubberView];
+                                                                  }];
 }
 
-
-
-- (IBAction)setVolume:(id)sender {
-    
-    self.player.volume=self.volumeSlider.value;
-}
-
-- (IBAction)close:(id)sender {
-    
-    if (self.player){
-        [self.playerItem removeObserver:self forKeyPath:@"status"];
-        [self.player removeTimeObserver:self.timeObserver];        }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-- (IBAction)switchChanged:(id)sender {
-    self.player.closedCaptionDisplayEnabled=self.switchforCC.on;
-}
-
+#pragma mark - Handle Scrubber Scroll
 - (IBAction)scrubbingDidStart:(id)sender {
     self.lastPlaybackRate = self.player.rate;
     //NSLog(@"%d",_lastPlaybackRate);
@@ -264,19 +208,73 @@ static const NSString *ItemStatusContext;
 }
 
 
+- (void)syncScrubberView {
+    //NSLog(@"syncScrubber start");
+    
+    if (self.playerItem.status==AVPlayerItemStatusReadyToPlay && !CMTIME_IS_INVALID(self.playerItem.duration)) {
+        
+        double currentTime = CMTimeGetSeconds([self.player currentTime]);
+        double duration = CMTimeGetSeconds(self.playerItem.duration);
+        
+        self.scrubberSlider.minimumValue = 0;
+        self.scrubberSlider.maximumValue = duration;
+        self.scrubberSlider.value=currentTime;
+        [self updateScrubberLabelsWithDuration:duration andCurrentTime:currentTime];
+    } else {
+        self.currentTimeLabel.text = @"-- : --";
+    }
+}
 
+- (void)updateScrubberLabelsWithDuration:(double)duration andCurrentTime:(double)currentTime {
+    NSInteger currentSeconds = ceilf(currentTime);
+    self.currentTimeLabel.text = [self formatSeconds:currentSeconds];
+    self.totalTimeLabel.text = [self formatSeconds:duration];
+}
 
+- (NSString *)formatSeconds:(NSInteger)value {
+    NSInteger seconds = value % 60;
+    NSInteger minutes = value / 60;
+    return [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+}
 
+#pragma mark - Buttons
+- (IBAction)play:sender {
+    [self.player play];
+    self.playButton.hidden=YES;
+    self.pauseButton.hidden=NO;
+}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self syncUI];
-    self.localResourceLoaded=NO;
-    self.onlineResourceLoaded=NO;
+- (IBAction)pause:(id)sender {
+    [self.player pause];
+    self.pauseButton.hidden=YES;
+    self.playButton.hidden=NO;
+}
+
+- (IBAction)setVolume:(id)sender {
+    
+    self.player.volume=self.volumeSlider.value;
+}
+
+- (IBAction)close:(id)sender {
+    
+    if (self.player){
+        [self.playerItem removeObserver:self forKeyPath:@"status"];
+        self.timeObserver=nil;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (IBAction)switchChanged:(id)sender {
+    self.player.closedCaptionDisplayEnabled=self.switchforCC.on;
+}
+
+#pragma mark - Reach End
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+    [self.player seekToTime:kCMTimeZero];
     self.scrubberSlider.value=0;
     self.playButton.hidden=NO;
     self.pauseButton.hidden=YES;
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -284,14 +282,6 @@ static const NSString *ItemStatusContext;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
