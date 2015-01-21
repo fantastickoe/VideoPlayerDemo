@@ -1,0 +1,3 @@
+This is a small video player demo: it can read and play local files, as well as remote HLS video feed. Click on the button to begin playing(by default I'm using the feed by Apple at this address https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/). You may drag the status bar to relocate to a different position of the video.
+To configure the source for HLS, go to change the parameter in PlayerViewController.m, with the Macro named HLSVIDEOURL.
+Created by Yinghao Wang 01/20/15

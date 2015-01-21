@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 WangYinghao. All rights reserved.
 //
 
+#define HLSVIDEOURL @"https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"
+
 #import "PlayerViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "PlayerView.h"
@@ -48,7 +50,7 @@ static const NSString *ItemStatusContext;
     NSLog(@"begin online loading");
     
     if(!self.onlineResourceLoaded){
-        NSURL *fileURL = [NSURL URLWithString:@"https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"];
+        NSURL *fileURL = [NSURL URLWithString:HLSVIDEOURL];
         
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
         NSString *tracksKey = @"tracks";
@@ -83,6 +85,10 @@ static const NSString *ItemStatusContext;
                                     self.localResourceLoaded=NO;
                                     self.playButton.hidden=NO;
                                     self.pauseButton.hidden=YES;
+                                    NSLog(@"playeritem: %@",self.playerItem.description);
+                                    for(AVAssetTrack * track in self.playerItem.asset.tracks){
+                                        NSLog(@"track info:%@",track.formatDescriptions.description);
+                                    }
                                 }
                                 else {
                                     // You should deal with the error appropriately.
@@ -140,6 +146,10 @@ static const NSString *ItemStatusContext;
                                     self.onlineResourceLoaded=NO;
                                     self.playButton.hidden=NO;
                                     self.pauseButton.hidden=YES;
+                                    for(AVAssetTrack * track in self.playerItem.asset.tracks){
+                                        NSLog(@"track info:%@",track.formatDescriptions.description);
+                                    }
+                                    
                                 }
                                 else {
                                     // You should deal with the error appropriately.

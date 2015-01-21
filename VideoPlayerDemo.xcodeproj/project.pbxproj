@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC82AA171A6E40B4004C550A /* demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FC82AA161A6E40B4004C550A /* demo.mp4 */; };
 		FC82AA191A6EC8DE004C550A /* charlie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FC82AA181A6EC8DE004C550A /* charlie.mp4 */; };
+		FC82AB461A6F4F96004C550A /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = FC82AB451A6F4F96004C550A /* Readme */; };
 		FC9C941C1A6DA65C0077ECC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C941B1A6DA65C0077ECC8 /* main.m */; };
 		FC9C941F1A6DA65C0077ECC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C941E1A6DA65C0077ECC8 /* AppDelegate.m */; };
 		FC9C94221A6DA65C0077ECC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94211A6DA65C0077ECC8 /* ViewController.m */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		FC82AA161A6E40B4004C550A /* demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.mp4; sourceTree = "<group>"; };
 		FC82AA181A6EC8DE004C550A /* charlie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = charlie.mp4; sourceTree = "<group>"; };
+		FC82AB451A6F4F96004C550A /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		FC9C94161A6DA65C0077ECC8 /* VideoPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9C941A1A6DA65C0077ECC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9C941B1A6DA65C0077ECC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 		FC9C940D1A6DA65C0077ECC8 = {
 			isa = PBXGroup;
 			children = (
-				FC9C943F1A6DA6820077ECC8 /* VideoModel */,
+				FC9C943F1A6DA6820077ECC8 /* VideoView */,
 				FC9C94181A6DA65C0077ECC8 /* VideoPlayerDemo */,
 				FC9C94321A6DA65C0077ECC8 /* VideoPlayerDemoTests */,
 				FC9C94171A6DA65C0077ECC8 /* Products */,
@@ -92,6 +94,7 @@
 		FC9C94181A6DA65C0077ECC8 /* VideoPlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FC82AB451A6F4F96004C550A /* Readme */,
 				FC9C94231A6DA65C0077ECC8 /* Main.storyboard */,
 				FC9C94421A6E037C0077ECC8 /* PlayerViewController.h */,
 				FC9C94431A6E037C0077ECC8 /* PlayerViewController.m */,
@@ -134,13 +137,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FC9C943F1A6DA6820077ECC8 /* VideoModel */ = {
+		FC9C943F1A6DA6820077ECC8 /* VideoView */ = {
 			isa = PBXGroup;
 			children = (
 				FC9C94481A6E36F00077ECC8 /* PlayerView.h */,
 				FC9C94491A6E36F00077ECC8 /* PlayerView.m */,
 			);
-			name = VideoModel;
+			name = VideoView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +230,7 @@
 				FC82AA171A6E40B4004C550A /* demo.mp4 in Resources */,
 				FC9C942A1A6DA65C0077ECC8 /* LaunchScreen.xib in Resources */,
 				FC9C94271A6DA65C0077ECC8 /* Images.xcassets in Resources */,
+				FC82AB461A6F4F96004C550A /* Readme in Resources */,
 				FC82AA191A6EC8DE004C550A /* charlie.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
