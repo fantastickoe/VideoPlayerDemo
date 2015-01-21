@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC82AA171A6E40B4004C550A /* demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FC82AA161A6E40B4004C550A /* demo.mp4 */; };
+		FC82AA191A6EC8DE004C550A /* charlie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FC82AA181A6EC8DE004C550A /* charlie.mp4 */; };
 		FC9C941C1A6DA65C0077ECC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C941B1A6DA65C0077ECC8 /* main.m */; };
 		FC9C941F1A6DA65C0077ECC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C941E1A6DA65C0077ECC8 /* AppDelegate.m */; };
 		FC9C94221A6DA65C0077ECC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94211A6DA65C0077ECC8 /* ViewController.m */; };
@@ -15,8 +17,8 @@
 		FC9C942A1A6DA65C0077ECC8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9C94281A6DA65C0077ECC8 /* LaunchScreen.xib */; };
 		FC9C94361A6DA65C0077ECC8 /* VideoPlayerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94351A6DA65C0077ECC8 /* VideoPlayerDemoTests.m */; };
 		FC9C94411A6DFAC60077ECC8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C94401A6DFAC60077ECC8 /* AVFoundation.framework */; };
-		FC9C94441A6E037C0077ECC8 /* LocalPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94431A6E037C0077ECC8 /* LocalPlaybackViewController.m */; };
-		FC9C94471A6E03DE0077ECC8 /* HLSPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94461A6E03DE0077ECC8 /* HLSPlaybackViewController.m */; };
+		FC9C94441A6E037C0077ECC8 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94431A6E037C0077ECC8 /* PlayerViewController.m */; };
+		FC9C944A1A6E36F00077ECC8 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9C94491A6E36F00077ECC8 /* PlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC82AA161A6E40B4004C550A /* demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.mp4; sourceTree = "<group>"; };
+		FC82AA181A6EC8DE004C550A /* charlie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = charlie.mp4; sourceTree = "<group>"; };
 		FC9C94161A6DA65C0077ECC8 /* VideoPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9C941A1A6DA65C0077ECC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9C941B1A6DA65C0077ECC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,10 +48,10 @@
 		FC9C94341A6DA65C0077ECC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9C94351A6DA65C0077ECC8 /* VideoPlayerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerDemoTests.m; sourceTree = "<group>"; };
 		FC9C94401A6DFAC60077ECC8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FC9C94421A6E037C0077ECC8 /* LocalPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalPlaybackViewController.h; sourceTree = "<group>"; };
-		FC9C94431A6E037C0077ECC8 /* LocalPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalPlaybackViewController.m; sourceTree = "<group>"; };
-		FC9C94451A6E03DE0077ECC8 /* HLSPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSPlaybackViewController.h; sourceTree = "<group>"; };
-		FC9C94461A6E03DE0077ECC8 /* HLSPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSPlaybackViewController.m; sourceTree = "<group>"; };
+		FC9C94421A6E037C0077ECC8 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		FC9C94431A6E037C0077ECC8 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		FC9C94481A6E36F00077ECC8 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = VideoPlayerDemo/PlayerView.h; sourceTree = "<group>"; };
+		FC9C94491A6E36F00077ECC8 /* PlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerView.m; path = VideoPlayerDemo/PlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,17 +96,15 @@
 		FC9C94181A6DA65C0077ECC8 /* VideoPlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FC9C941D1A6DA65C0077ECC8 /* AppDelegate.h */,
-				FC9C941E1A6DA65C0077ECC8 /* AppDelegate.m */,
-				FC9C94451A6E03DE0077ECC8 /* HLSPlaybackViewController.h */,
-				FC9C94461A6E03DE0077ECC8 /* HLSPlaybackViewController.m */,
-				FC9C94421A6E037C0077ECC8 /* LocalPlaybackViewController.h */,
-				FC9C94431A6E037C0077ECC8 /* LocalPlaybackViewController.m */,
+				FC9C94231A6DA65C0077ECC8 /* Main.storyboard */,
+				FC9C94421A6E037C0077ECC8 /* PlayerViewController.h */,
+				FC9C94431A6E037C0077ECC8 /* PlayerViewController.m */,
 				FC9C94201A6DA65C0077ECC8 /* ViewController.h */,
 				FC9C94211A6DA65C0077ECC8 /* ViewController.m */,
-				FC9C94231A6DA65C0077ECC8 /* Main.storyboard */,
 				FC9C94261A6DA65C0077ECC8 /* Images.xcassets */,
 				FC9C94281A6DA65C0077ECC8 /* LaunchScreen.xib */,
+				FC9C941D1A6DA65C0077ECC8 /* AppDelegate.h */,
+				FC9C941E1A6DA65C0077ECC8 /* AppDelegate.m */,
 				FC9C94191A6DA65C0077ECC8 /* Supporting Files */,
 			);
 			path = VideoPlayerDemo;
@@ -111,6 +113,8 @@
 		FC9C94191A6DA65C0077ECC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC82AA161A6E40B4004C550A /* demo.mp4 */,
+				FC82AA181A6EC8DE004C550A /* charlie.mp4 */,
 				FC9C941A1A6DA65C0077ECC8 /* Info.plist */,
 				FC9C941B1A6DA65C0077ECC8 /* main.m */,
 			);
@@ -137,6 +141,8 @@
 		FC9C943F1A6DA6820077ECC8 /* VideoModel */ = {
 			isa = PBXGroup;
 			children = (
+				FC9C94481A6E36F00077ECC8 /* PlayerView.h */,
+				FC9C94491A6E36F00077ECC8 /* PlayerView.m */,
 			);
 			name = VideoModel;
 			sourceTree = "<group>";
@@ -222,8 +228,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9C94251A6DA65C0077ECC8 /* Main.storyboard in Resources */,
+				FC82AA171A6E40B4004C550A /* demo.mp4 in Resources */,
 				FC9C942A1A6DA65C0077ECC8 /* LaunchScreen.xib in Resources */,
 				FC9C94271A6DA65C0077ECC8 /* Images.xcassets in Resources */,
+				FC82AA191A6EC8DE004C550A /* charlie.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,8 +250,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9C94221A6DA65C0077ECC8 /* ViewController.m in Sources */,
-				FC9C94471A6E03DE0077ECC8 /* HLSPlaybackViewController.m in Sources */,
-				FC9C94441A6E037C0077ECC8 /* LocalPlaybackViewController.m in Sources */,
+				FC9C944A1A6E36F00077ECC8 /* PlayerView.m in Sources */,
+				FC9C94441A6E037C0077ECC8 /* PlayerViewController.m in Sources */,
 				FC9C941F1A6DA65C0077ECC8 /* AppDelegate.m in Sources */,
 				FC9C941C1A6DA65C0077ECC8 /* main.m in Sources */,
 			);
